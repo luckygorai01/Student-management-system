@@ -1,5 +1,5 @@
 from django import forms
-from .models import Task,StudentList
+from .models import Task, StudentList, feedback
 
 
 class TaskForm(forms.ModelForm):
@@ -9,6 +9,13 @@ class TaskForm(forms.ModelForm):
 
 class StudentForm(forms.ModelForm):
     class Meta:
-        model=StudentList
-        fields=['Name','Register_Number']
+        model = StudentList
+        fields = ['Register_Number','Name']
 
+class feedbackForm(forms.ModelForm):
+    class Meta:
+        model = feedback
+        fields = ['name', 'email', 'phonenumber', 'textfield']
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField(label = 'Select a File')

@@ -1,0 +1,32 @@
+# Student Management System
+
+A comprehensive College Website built using Django that streamlines various academic and administrative tasks typically performed in a college environment. This web application is designed to simplify and digitize student and faculty management processes, offering a user-friendly interface for effective management.
+
+# Features
+
+Student Management:
+
+Add, update, and delete student records.
+View academic and personal details.
+Faculty Management:
+
+Manage faculty profiles and update their details.
+Track subjects assigned to each faculty member.
+Course and Subject Management:
+
+Add and organize courses and subjects.
+Assign subjects to specific faculty members.
+Event Management:
+
+Organize and track college events and sports activities.
+Attendance Tracking:
+
+Record and analyze student attendance.
+Performance Monitoring:
+
+Manage and evaluate student performance through marks and grades.
+
+# Tech Stack
+Backend: Django
+Frontend: HTML, CSS, 
+Database: Mongo DB SQLite 

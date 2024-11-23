@@ -1,23 +1,29 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
-from facultyapp.models import Marks
-from adminapp.models import StudentList
 
-# Create your views here.
+
 def studenthomepage(request):
-    return render(request, 'studentapp/StudentHomePage.html')
+    return render(request,'studentapp/StudentHomePage.html')
 
+
+from django.contrib.auth.models import User
+from django.shortcuts import render
+# from facultyapp.models import marks  # Ensure that this is the correct model name
+# from adminapp.models import StudentList
 
 
 def view_marks(request):
     user = request.user
+
     try:
         student_user = User.objects.get(username=user.username)
         student = StudentList.objects.get(Register_Number=student_user)
-        marks = Marks.objects.filter(student=student)
-        return render(request,'studentapp/view_marks.html')
-    
-    except(StudentList.DoesNotExist, User.DoesNotExist):
-        return render(request,'studentapp/no_studentlist.html',{
-            'error':'no student found for this user'
+        student_marks = marks.objects.filter(student=student)  # Use marks if it is lowercase
+
+        return render(request, 'studentapp/marks.html', {
+            'marks': student_marks  # Pass marks to the template
+        })
+
+    except (StudentList.DoesNotExist, User.DoesNotExist):
+        return render(request, 'studentapp/error.html', {
+            'error': 'No student found'
         })

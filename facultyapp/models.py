@@ -1,51 +1,53 @@
-from django.db import models
-from adminapp.models import StudentList
-# Create your models here.
+from django.apps import AppConfig
 
-class addcourse(models.Model):
+class FacultyappConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'facultyapp'
+
+
+from adminapp.models import StudentList
+from django.db import models
+
+
+class AddCourse(models.Model):
     COURSE_CHOICES = [
-        ('AOOP',"ADVANCED OBJECT ORIENTED PROGRAMMING"),
-        ("CTOD","COMPUTATIONAL THINKING FOR OBJECT DESIGN"),
-        ("CTOOD","COMPUTATIONAL THINKING FOR OBJECT ORIENTED DESIGN"),
-        ("PFSD","PYTHON FULL STACK WEB DEVELOPMENT"),
-        ("DBMS","DATABASE MANAGEMENT SYSTEM"),
-        ("DSS","DATA SCIENCE AND STATISTICS"),
-        # ("DSS","DATA SCIENCE AND STATISTICS"),
-        
+        ('AOOP', 'Advance Object-Oriented Programming'),
+        ('PFSD', 'Python Full Stack Development'),
+        ('DBMS', 'Database Management Systems'),
+        ('DSA', 'Data Structures and Algorithms'),
+        ('AI', 'Artificial Intelligence'),
+        ('EN', 'English'),
     ]
+
     SECTION_CHOICES = [
-        ('S11','SECTION S11'),
-        ('S12','SECTION S12'),
-        ('S13','SECTION S13'),
-        ('S14','SECTION S14'),
-        ('S15','SECTION S15'),
-        ('S21','SECTION S21'),
-        ('S22','SECTION S22'),
-        ('S23','SECTION S23'),
-        ('S24','SECTION S24'),
-        ('S25','SECTION S25'),
+        ('S1', 'Section S1'),
+        ('S2', 'Section S2'),
+        ('S3', 'Section S3'),
+        ('S4', 'Section S4'),
+        ('S5', 'Section S5'),
+        ('S6', 'Section S6'),
+        ('S7', 'Section S7'),
+        ('S8', 'Section S8'),
+        ('S9', 'Section S9'),
     ]
-    student = models.ForeignKey(StudentList,on_delete=models.CASCADE)
-    course = models.CharField(max_length=50,choices=COURSE_CHOICES)
-    section = models.CharField(max_length=50,choices=SECTION_CHOICES)
-    
-def str(self):
-    return f'{self.student.Register_Number} - {self.course} ({self.section})'
+
+    student = models.ForeignKey(StudentList, on_delete=models.CASCADE)
+    course = models.CharField(max_length=50, choices=COURSE_CHOICES)
+    section = models.CharField(max_length=5, choices=SECTION_CHOICES)
+
+    def _str_(self):
+        return f'{self.student.Register_Number} - {self.course} ({self.section})'
+
 
 class Marks(models.Model):
     COURSE_CHOICES = [
-        ('AOOP',"ADVANCED OBJECT ORIENTED PROGRAMMING"),
-        ("CTOD","COMPUTATIONAL THINKING FOR OBJECT DESIGN"),
-        ("CTOOD","COMPUTATIONAL THINKING FOR OBJECT ORIENTED DESIGN"),
-        ("PFSD","PYTHON FULL STACK WEB DEVELOPMENT"),
-        ("DBMS","DATABASE MANAGEMENT SYSTEM"),
-        ("DSS","DATA SCIENCE AND STATISTICS"),
-        # ("DSS","DATA SCIENCE AND STATISTICS"),
-        
+        ('AOOP','Advanced Object-Oriented Programming'),
+        ('PFSD','Python Full Stack Development with Django'),
+        ('English', 'English'),
     ]
-    student = models.ForeignKey(StudentList,on_delete=models.CASCADE)
-    course = models.CharField(max_length=50,choices=COURSE_CHOICES)
+    student = models.ForeignKey(StudentList, on_delete=models.CASCADE)
+    course = models.CharField(max_length=50, choices=COURSE_CHOICES)
     marks = models.IntegerField()
-    
-    def str(self):
-        return f'{self.student.Register_Number} - {self.course}'
+
+    def __str__(self):
+        return f"{self.student.name} - {self.course}"
